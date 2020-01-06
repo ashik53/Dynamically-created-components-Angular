@@ -1,33 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule }        from '@angular/platform-browser';
+import { NgModule }             from '@angular/core';
+import { AppComponent }         from './app.component';
+import { HeroJobAdComponent }   from './hero-job-ad.component';
+import { AdBannerComponent }    from './ad-banner.component';
+import { HeroProfileComponent } from './hero-profile.component';
+import { AdDirective }          from './ad.directive';
+import { AdService }            from './ad.service';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms'
-import {TestComponent} from 'src/app/test.component';
-import { CreateComponent } from './create/create.component';
-import { ShowComponent } from './show/show.component';
-import { PostContainerComponent } from './post-container/post-container.component';
-import { SinglePostComponent } from './single-post/single-post.component'
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
-    CreateComponent,
-    ShowComponent,
-    PostContainerComponent,
-    SinglePostComponent,
+    AdBannerComponent,
+    HeroJobAdComponent,
+    HeroProfileComponent,
+    AdDirective
   ],
   entryComponents: [
-    SinglePostComponent
+    HeroJobAdComponent, HeroProfileComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,
+    
     
   ],
-  providers: [],
+  providers: [AdService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){}
+}

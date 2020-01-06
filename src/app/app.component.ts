@@ -1,40 +1,27 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { TestService } from 'src/app/test.service'
-import Sortable from 'sortablejs';
+import { Component, OnInit } from '@angular/core';
+import {AdService} from './ad.service';
+import {AdItem} from './ad-item';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <div>
+      <app-ad-banner [ads]="ads"> </app-ad-banner>
+    </div>
+  ` 
 })
-export class AppComponent {
 
-  simpleInput: string;
-
-  allDivs: any;;
-  constructor(private testService: TestService) {
-
-  }
-  ngOnInit() {
-    this.testService.divIdsCast.subscribe(result => {
-      this.allDivs = result;
-      
-    })
-  }
-
+export class AppComponent  implements OnInit {
   
+  ads: AdItem[];
 
+  constructor(private adService: AdService){}
 
-  showDivs() {
-    
-    let x = document.getElementById("mainDiv");
-    Sortable.create(x, {
-      onEnd: function (evt) {
-        console.log(evt)
-      }
-    })
-    //this.testService.call_sortable(true);
+  ngOnInit() {
+    this.ads = this.adService.getAds();
   }
-
-
-
 }
+
+
+
+
